@@ -1,21 +1,17 @@
 {
-  "name": "jaar02_periode01_ontwikkelweek",
+  "name": "api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:all": "concurrently \"npm run dev -w client\" \"npm run dev -w api\""
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "workspaces": [
-    "websocket",
-    "client",
-    "api"
-  ],
   "dependencies": {
-    "concurrently": "^9.1.0"
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
   }
 }

@@ -1,8 +1,13 @@
 import Image from "next/image";
 import { TriviaLayoutComponent } from "@/components/trivia-layout";
-import { SubjectForm } from "@/components/subject-form";
 
-export default function Home() {
+export default async function Home({
+    params,
+}: {
+    params: Promise<{ topic: string }>;
+}) {
+    const { topic } = await params;
+
     const questions = [
         {
             question: "Who was the first President of the United States?",
@@ -30,5 +35,5 @@ export default function Home() {
             correct: "Pacific Ocean",
         },
     ];
-    return <SubjectForm/>;
+    return <TriviaLayoutComponent questions={questions} topic={topic} />;
 }

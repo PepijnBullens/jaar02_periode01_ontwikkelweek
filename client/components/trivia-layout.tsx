@@ -15,26 +15,21 @@ import React from "react";
 
 export function TriviaLayoutComponent({
     questions,
+    topic,
 }: {
     questions: { question: string; options: string[]; correct: string }[];
+    topic?: string;
 }) {
     // This would be managed by state in a real application
     const [currentQuestion, setCurrentQuestion] = React.useState(0);
     const totalQuestions = React.useMemo(() => questions.length, [questions]);
     const progress = React.useMemo(
-        () => ((currentQuestion) / (totalQuestions - 1)) * 100,
+        () => (currentQuestion / (totalQuestions - 1)) * 100,
         [currentQuestion, totalQuestions]
     );
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
-            <header className="border-b">
-                <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                    <h1 className="text-2xl font-bold">Trivia Master</h1>
-                    <div className="text-sm">Score: 200</div>
-                </div>
-            </header>
-
+        <>
             <main className="flex-grow container mx-auto px-4 py-8 flex items-center justify-center">
                 <Card className="w-full max-w-2xl">
                     <CardHeader>
@@ -44,7 +39,7 @@ export function TriviaLayoutComponent({
                                 {totalQuestions}
                             </span>
                             <span className="text-sm font-normal">
-                                Category: History
+                                Category: {topic ?? "General Knowledge"}
                             </span>
                         </CardTitle>
                         <Progress value={progress} className="w-full" />
@@ -102,6 +97,6 @@ export function TriviaLayoutComponent({
                     <Button>Submit Quiz</Button>
                 </div>
             </footer>
-        </div>
+        </>
     );
 }
