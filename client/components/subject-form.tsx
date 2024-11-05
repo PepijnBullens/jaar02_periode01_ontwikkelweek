@@ -32,7 +32,7 @@ export function SubjectForm() {
         <main className="flex-grow container mx-auto px-4 py-8 flex items-center justify-center">
             <Card className="w-full max-w-2xl">
                 <CardHeader>
-                    <CardTitle>Enter a Path to Redirect</CardTitle>
+                    <CardTitle>Enter a Subject for the Trivia Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form
@@ -41,7 +41,7 @@ export function SubjectForm() {
                     >
                         <div className="flex flex-col space-y-2">
                             <Label htmlFor="input-url">
-                                Enter Path (e.g., 'questions')
+                                Enter Subject (e.g., 'music')
                             </Label>
                             <input
                                 id="input-url"
@@ -49,7 +49,7 @@ export function SubjectForm() {
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                                 className="p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
-                                placeholder="Enter path here"
+                                placeholder="Enter subject here"
                             />
                         </div>
                         <CardFooter className="flex justify-center">
