@@ -226,3 +226,9 @@ make this all one line: Give me 10 trivia questions in strictly/only the followi
 
    }]". Please keep this format and ONLY return the JSON data; no other confirmation text or anything else. The trivia questions should be about the following topic: "watermelons"
 ```
+---
+#### Prompt for generating the UI using Vercel's v0
+```
+make me a layout for a trivia web app
+```
+---
