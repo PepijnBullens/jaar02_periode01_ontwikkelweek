@@ -18,7 +18,7 @@ export function TriviaLayoutComponent({
     topic,
 }: {
     questions: { question: string; options: string[]; correct: string }[];
-    topic?: string;
+    topic: string;
 }) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [isQuizComplete, setIsQuizComplete] = useState(false);
@@ -37,6 +37,10 @@ export function TriviaLayoutComponent({
         setIsQuizComplete(true);
     };
 
+    function capitalizeFirstLetter(val: string) {
+        return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+    }
+
     const correctAnswersCount = answers.filter(
         (answer, index) => answer === questions[index].correct
     ).length;
@@ -53,7 +57,10 @@ export function TriviaLayoutComponent({
                                     {totalQuestions}
                                 </span>
                                 <span className="text-sm font-normal">
-                                    Category: {topic ?? "General Knowledge"}
+                                    Category:{" "}
+                                    {capitalizeFirstLetter(
+                                        decodeURIComponent(topic)
+                                    )}
                                 </span>
                             </CardTitle>
                             <Progress value={progress} className="w-full" />

@@ -6,34 +6,34 @@ export default async function Home({
 }: {
     params: Promise<{ topic: string }>;
 }) {
+    function shuffle(array: Array<any>) {
+        let currentIndex = array.length;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+            // Pick a remaining element...
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex],
+                array[currentIndex],
+            ];
+        }
+    }
+
     const { topic } = await params;
 
-    const questions = [
-        {
-            question: "Who was the first President of the United States?",
-            options: [
-                "George Washington",
-                "Thomas Jefferson",
-                "John Adams",
-                "Benjamin Franklin",
-            ],
-            correct: "George Washington",
+    const questions = await fetch(`http://localhost:8080/questions`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
         },
-        {
-            question: "What is the capital of France?",
-            options: ["London", "Paris", "Berlin", "Madrid"],
-            correct: "Paris",
-        },
-        {
-            question: "What is the largest ocean on Earth?",
-            options: [
-                "Atlantic Ocean",
-                "Indian Ocean",
-                "Arctic Ocean",
-                "Pacific Ocean",
-            ],
-            correct: "Pacific Ocean",
-        },
-    ];
+        body: JSON.stringify({ subject: topic }),
+    }).then((res) => res.json());
+
+    shuffle(questions);
+
     return <TriviaLayoutComponent questions={questions} topic={topic} />;
 }
